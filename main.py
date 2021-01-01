@@ -1,14 +1,13 @@
 import os
 from shutil import move
 
-src = "C:\\ALL IN ONE\\Movies"
-dst = "C:\\ALL IN ONE\\Temp Folder"
-exc = "C:\\ALL IN ONE\\Excess Folders"
+src = "C:\\ALL IN ONE\\Movies"                                  # Source Destination
+dst = "C:\\ALL IN ONE\\Temp Folder"                             # Temporary Destination
+exc = "C:\\ALL IN ONE\\Excess Folders"                          # Where Excess Folders will be located
 num_files = 0
-# The src is the absolute path while the root is the relevant path, which is what we need
 
 
-def sort(movie_file, root_file):                             # Moves all the files into the temporary folder
+def sort(movie_file, root_file):                                # Moves all the files into the temporary folder
     if movie_file.lower().strip().endswith(("mp4", "mkv", "mpeg")):
         global num_files
         num_files += 1
@@ -17,7 +16,7 @@ def sort(movie_file, root_file):                             # Moves all the fil
         return print(f"Moving file:  {movie_file[:10]}...\tto\t\t\t\t\t{src}")
 
 
-def re_sort(mv_file):                                        # Moves the files back to the src
+def re_sort(mv_file):                                           # Moves the files back to the src
     path = os.path.join(dst, mv_file)
     move(path, src)
 
@@ -27,7 +26,7 @@ def sort_sub_folders():
         for folder in dirsA:
             path = os.path.join(rootA, folder)
             move(path, exc)
-    move(dst, exc)                                           # Moves the empty Temporary Folder to the Excess Folder
+    move(dst, exc)                                              # Moves the empty Temporary Folder to the Excess Folder
     return print(f"\nMoved a total of {num_files} files \n//////////////////////////////////////")
 
 
